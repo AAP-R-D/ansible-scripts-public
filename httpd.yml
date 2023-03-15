@@ -1,0 +1,5 @@
+- hosts: all
+  tasks:
+   - package: "name=httpd state=present"
+   - copy: "content=hi  dest=/var/www/html/index.html"
+   - service: "name=httpd state=started"
