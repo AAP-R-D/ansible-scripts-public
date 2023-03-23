@@ -1,40 +1,18 @@
 ---
-- name: Configure HTTP Server
-  hosts: all
-  become: true
-
+- hosts: all
   tasks:
-    - name: Install Apache HTTP Server
-      yum:
+    - name: Install latest httpd package
+      package:
         name: httpd
         state: latest
 
-    - name: Start and enable HTTP Server
+    - name: Copy updated index.html content
+      template:
+        src: /path/to/updated/index.html
+        dest: /var/www/html/index.html
+        mode: '0644'
+
+    - name: Ensure httpd service is started
       service:
         name: httpd
         state: started
-        enabled: true
-
-    - name: Copy index.html file
-      copy:
-        src: /path/to/local/index.html
-        dest: /var/www/html/index.html
-
-    - name: Configure HTTP Server to use custom index.html file
-      lineinfile:
-        path: /etc/httpd/conf/httpd.conf
-        regexp: "^DirectoryIndex"
-        line: "DirectoryIndex index.html"
-
-    - name: Update index.html when code is updated
-      copy:
-        src: /path/to/local/index.html
-        dest: /var/www/html/index.html
-      notify: Restart HTTP Server
-
-  handlers:
-    - name: Restart HTTP Server
-      service:
-        name: httpd
-        state: restarted
-
