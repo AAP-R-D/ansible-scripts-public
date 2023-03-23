@@ -8,7 +8,6 @@
 
     - name: Copy updated index.html content
       template:
-        src: /path/to/updated/index.html
         copy: "content=hello world dest=/var/www/html/index.html"
         mode: '0644'
 
