@@ -1,5 +1,41 @@
-- hosts: all
+---
+- name: Configure HTTP Server
+  hosts: all
+  become: true
+
+  vars:
+    code_url: http://your-code-server/content
+    index_file: /var/www/html/index.html
+
   tasks:
-   - package: "name=httpd state=latest"
-   - copy: "content=hello world dest=/var/www/html/index.html"
-   - service: "name=httpd state=started"
+    - name: Install Apache HTTP Server
+      package:
+        name: httpd
+        state: latest
+
+    - name: Start and enable HTTP Server
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Fetch the initial code
+      copy:
+        content: "hello world"
+        dest: "{{ index_file }}"
+        mode: 0644
+
+    - name: Update index.html when content is updated
+      get_url:
+        url: "{{ code_url }}"
+        dest: "{{ index_file }}"
+        mode: 0644
+      register: get_result
+      when: get_result.changed
+      notify: Restart HTTP Server
+
+  handlers:
+    - name: Restart HTTP Server
+      service:
+        name: httpd
+        state: restarted
