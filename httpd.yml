@@ -1,5 +1,5 @@
 - hosts: all
   tasks:
-   - package: "name=httpd state=present"
+   - package: "name=httpd state=latest"
    - copy: "content=hello world dest=/var/www/html/index.html"
-   - service: "name=httpd state=restarted"
+   - service: "name=httpd state=started"
