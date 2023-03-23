@@ -4,7 +4,6 @@
   become: true
 
   vars:
-    code_url: https://github.com/AAP-R-D/ansible-scripts-public.git
     index_file: /var/www/html/index.html
 
   tasks:
@@ -26,8 +25,6 @@
         mode: 0644
 
     - name: Update index.html when content is updated
-      get_url:
-        url: "{{ code_url }}"
         dest: "{{ index_file }}"
         mode: 0644
       register: get_result
