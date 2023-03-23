@@ -4,7 +4,7 @@
   become: true
 
   vars:
-    code_url: http://your-code-server/content
+    code_url: https://github.com/AAP-R-D/ansible-scripts-public.git
     index_file: /var/www/html/index.html
 
   tasks:
