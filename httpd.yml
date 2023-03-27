@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  gather_facts: false
   tasks:
     - name: Install latest httpd package
       package:
@@ -9,8 +10,8 @@
     - name: Copy updated index.html content
       become: true
       copy:
-        remote_src: yes
-        src: /var/lib/awx/projects
+        remote_src: no
+        src: /var/lib/awx/projects/_13__web_project_pk/index.html
         dest: /var/www/html/index.html"
         mode: '0644'
 
