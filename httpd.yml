@@ -10,7 +10,7 @@
     - name: Copy updated index.html content
       become: true
       copy:
-        remote_src: yes
+        remote_src: no
         src: ~/index.html
         dest: /var/www/html/index.html"
         mode: 0644
