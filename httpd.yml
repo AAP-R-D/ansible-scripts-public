@@ -9,7 +9,7 @@
     - name: Copy updated index.html content
       template:
         copy: content=hello world
-        remote_src: yes
+        remote_src: no
         src: /var/lib/awx/projects
         dest: /var/www/html/index.html"
         mode: '0644'
