@@ -11,9 +11,9 @@
       become: true
       copy:
         remote_src: yes
-        src: /var/lib/awx/projects/_13__web_project_pk/index.html
+        src: ~/index.html
         dest: /var/www/html/index.html"
-        mode: '0644'
+        mode: 0644
 
     - name: Ensure httpd service is started
       service:
