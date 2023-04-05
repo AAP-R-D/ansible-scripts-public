@@ -8,16 +8,13 @@
   #vars_files:
    # - variables.yaml
   vars:
-    env: "prod"  # Change this to "dev" or "prod" to load the appropriate variables
+    stage: dev
   tasks:
-    - name: Load variables based on environment
-      include_vars:
-        file: "env-variables/{{ env }}-variables.yml"
-        name: env-variables
-      when: env in ['dev', 'prod']
+    - name: Load variable file based on stage
+      include_vars: "env-variables/{{ stage }}-variables.yml"
     - name: Print loaded variables
       debug:
-        var: env-variables
+        var: env
   tasks:
     - name: Install latest httpd package
       package:
