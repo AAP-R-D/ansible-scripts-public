@@ -15,7 +15,7 @@
       when: stage in ['dev', 'prod']
       set_fact:
         env: "{{ env|default({})|combine(ansible_facts|dict(lookup('vars'))) }}"
-  
+        
     - name: Load default variable file if no dev or prod file exists
       include_vars: "env-variables/default-variables.yml"
       when: stage not in ['dev', 'prod']
