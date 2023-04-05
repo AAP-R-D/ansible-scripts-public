@@ -11,6 +11,8 @@
     env: {}
   tasks:
     - name: Load variable file based on stage
+      ansible.builtin.debug:
+        var: env
       include_vars: "env-variables/{{ stage }}-variables.yml"
       when: stage in ['dev', 'prod']
       vars:
