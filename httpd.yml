@@ -6,6 +6,11 @@
       package:
         name: httpd
         state: latest
+        
+    - name: Create index.html file
+      copy:
+        content: "hi"     # The content to copy to the file
+        dest: ~/index.html   # The destination file path    
 
     - name: Copy updated index.html content
       become: true
