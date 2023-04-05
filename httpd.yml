@@ -1,10 +1,10 @@
 ---
 - hosts: all
   gather_facts: false
-  //vars:
-    //var1: praveen
-    //var2: is
-    //var3: king
+  #vars:
+    #var1: praveen
+    #var2: is
+    #var3: king
   vars_files:
     - variables.yaml
   
