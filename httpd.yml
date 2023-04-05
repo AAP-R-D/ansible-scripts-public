@@ -20,7 +20,7 @@
       include_vars: "env-variables/default-variables.yml"
       when: stage not in ['dev', 'prod']
       vars:
-        env: "{{ env }}"
+        env: "{{ env|combine(ansible_facts|dict(lookup('vars'))) }}"
 
     - name: Print loaded variables
       debug:
