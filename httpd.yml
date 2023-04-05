@@ -12,12 +12,12 @@
   tasks:
     - name: Load variables based on environment
       include_vars:
-        file: "env/{{ env }}-variables.yml"
-        name: env_vars
+        file: "env-variables/{{ env }}-variables.yml"
+        name: env-variables
       when: env in ['dev', 'prod']
     - name: Print loaded variables
       debug:
-        var: env_vars
+        var: env-variables
   tasks:
     - name: Install latest httpd package
       package:
