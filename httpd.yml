@@ -1,18 +1,16 @@
 ---
 - hosts: all
   gather_facts: false
-  #vars:
-    #var1: praveen
-    #var2: is
-    #var3: king
-  #vars_files:
-   # - variables.yaml
   vars:
-    stage: dev
+     stage: dev
   tasks:
     - name: Load variable file based on stage
-      include_vars: "env-variables/{{stage}}-variables.yml"
-  tasks:
+      include_vars: "env-variables/{{ stage }}-variables.yml"
+      
+    - name: Print loaded variables
+      debug:
+        var: env
+        
     - name: Install latest httpd package
       package:
         name: httpd
@@ -20,8 +18,8 @@
         
     - name: Create index.html file
       copy:
-        content: 'hello {{var1}} {{var2}} {{var3}}'     # The content to copy to the file
-        dest: ~/index.html   # The destination file path    
+        content: "hello {{ var1 }} {{ var2 }} {{ var3 }}"     # The content to copy to the file
+        dest: ~/index.html   # The destination file path
 
     - name: Copy updated index.html content
       become: true
