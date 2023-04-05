@@ -2,20 +2,25 @@
 - hosts: all
   gather_facts: false
   #vars:
-   #  stage: dev
+   #  stage: "{{ stage | default('dev') }}"
   #tasks:
     #- name: Load variable file based on stage
       #include_vars: "env-variables/{{ stage }}-variables.yml"
   vars:
-    stage: "{{ dev | default('default') }}"
+    stage: dev
   tasks:
     - name: Load variable file based on stage
       include_vars: "env-variables/{{ stage }}-variables.yml"
       when: stage in ['dev', 'prod']
       
+    - name: Load default variable file if no dev or prod file exists
+      include_vars: "env-variables/default-variables.yml"
+      when: stage not in ['dev', 'prod']
+
     - name: Print loaded variables
       debug:
         var: env
+
         
     - name: Install latest httpd package
       package:
