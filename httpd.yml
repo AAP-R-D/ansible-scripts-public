@@ -12,10 +12,14 @@
     - name: Load variable file based on stage
       include_vars: "env-variables/{{ stage }}-variables.yml"
       when: stage in ['dev', 'prod']
+      vars:
+        env: "{{ env }}"
       
     - name: Load default variable file if no dev or prod file exists
       include_vars: "env-variables/default-variables.yml"
       when: stage not in ['dev', 'prod']
+      vars:
+        env: "{{ env }}"
 
     - name: Print loaded variables
       debug:
