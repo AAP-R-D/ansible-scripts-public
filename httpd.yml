@@ -7,7 +7,7 @@
     #- name: Load variable file based on stage
       #include_vars: "env-variables/{{ stage }}-variables.yml"
   vars:
-    stage: dev
+    stage: 
   tasks:
     - name: Load variable file based on stage
       include_vars: "env-variables/{{ stage }}-variables.yml"
