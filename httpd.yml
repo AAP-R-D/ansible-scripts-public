@@ -1,11 +1,17 @@
 ---
 - hosts: all
   gather_facts: false
+  #vars:
+   #  stage: dev
+  #tasks:
+    #- name: Load variable file based on stage
+      #include_vars: "env-variables/{{ stage }}-variables.yml"
   vars:
-     stage: dev
+    stage: "{{ dev | default('default') }}"
   tasks:
     - name: Load variable file based on stage
       include_vars: "env-variables/{{ stage }}-variables.yml"
+      when: stage in ['dev', 'prod']
       
     - name: Print loaded variables
       debug:
