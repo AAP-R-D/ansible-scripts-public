@@ -11,13 +11,11 @@
     env: {}
   tasks:
     - name: Load variable file based on stage
-      ansible.builtin.debug:
-        var: env
       include_vars: "env-variables/{{ stage }}-variables.yml"
       when: stage in ['dev', 'prod']
-      vars:
-        env: "{{ env|combine(ansible_facts|dict(lookup('vars'))) }}"
-      
+      set_fact:
+        env: "{{ env|default({})|combine(ansible_facts|dict(lookup('vars'))) }}"
+  
     - name: Load default variable file if no dev or prod file exists
       include_vars: "env-variables/default-variables.yml"
       when: stage not in ['dev', 'prod']
