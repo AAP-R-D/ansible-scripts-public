@@ -11,7 +11,7 @@
     stage: dev
   tasks:
     - name: Load variable file based on stage
-      include_vars: "env-variables/{{ stage }}-variables.yml"
+      include_vars: "env-variables/{{stage}}-variables.yml"
   tasks:
     - name: Install latest httpd package
       package:
