@@ -5,9 +5,19 @@
     #var1: praveen
     #var2: is
     #var3: king
-  vars_files:
-    - variables.yaml
-  
+  #vars_files:
+   # - variables.yaml
+  vars:
+    env: "prod"  # Change this to "dev" or "prod" to load the appropriate variables
+  tasks:
+    - name: Load variables based on environment
+      include_vars:
+        file: "env/{{ env }}-variables.yml"
+        name: env_vars
+      when: env in ['dev', 'prod']
+    - name: Print loaded variables
+      debug:
+        var: env_vars
   tasks:
     - name: Install latest httpd package
       package:
