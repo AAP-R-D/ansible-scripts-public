@@ -1,6 +1,10 @@
 ---
 - hosts: all
   gather_facts: false
+  vars:
+    var1: praveen
+    var2: is
+    var3: king
   tasks:
     - name: Install latest httpd package
       package:
@@ -9,7 +13,7 @@
         
     - name: Create index.html file
       copy:
-        content: "hi"     # The content to copy to the file
+        content: 'hello {{var1}} {{var2}} {{var3}}'     # The content to copy to the file
         dest: ~/index.html   # The destination file path    
 
     - name: Copy updated index.html content
