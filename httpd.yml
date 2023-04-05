@@ -14,7 +14,7 @@
       include_vars: "env-variables/{{ stage }}-variables.yml"
       when: stage in ['dev', 'prod']
       vars:
-        env: "{{ env }}"
+        env: "{{ env|combine(ansible_facts|dict(lookup('vars'))) }}"
       
     - name: Load default variable file if no dev or prod file exists
       include_vars: "env-variables/default-variables.yml"
