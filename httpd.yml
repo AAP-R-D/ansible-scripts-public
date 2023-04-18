@@ -8,9 +8,9 @@
   vars_files:
     - variables.yaml
   vars:
-    var1: "{{ extra_vars.var1 | default(github_vars.var1) }}"
-    var2: "{{ extra_vars.var2 | default(github_vars.var2) }}"
-    var3: "{{ extra_vars.var3 | default(github_vars.var3) }}"
+    var1: "{{ extra_vars.var1 if extra_vars.var1 is defined else github_vars.var1 }}"
+    var2: "{{ extra_vars.var2 if extra_vars.var2 is defined else github_vars.var2 }}"
+    var3: "{{ extra_vars.var3 if extra_vars.var3 is defined else github_vars.var3 }}"
   tasks:
     - name: Do something with my variables
       debug:
