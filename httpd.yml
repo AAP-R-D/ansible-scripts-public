@@ -7,7 +7,7 @@
     #var3: king
   vars_files:
     - variables.yaml
-    vars:
+  vars:
     var1: "{{ extra_vars.var1 | default(github_vars.var1) }}"
     var2: "{{ extra_vars.var2 | default(github_vars.var2) }}"
     var3: "{{ extra_vars.var3 | default(github_vars.var3) }}"
