@@ -1,13 +1,28 @@
-1.created the CI/CD Pipeline for lambda 
-and Unfortunately, the lambda function is continuously loading and causing the pipeline to fail.
-2.Geting the infomation of sonar qube major requirements
-3.Understanding and triggered the playbooks dynamically by using API calls.
-4.completed the following Ansible use cases:
-  a.Code Deployment to Multiple Servers with Automated Notification Trigger
-  b.Restart The Servers On AWS by using scheduler
-  c.Service restarts
-  d.Software installation
-  e.Disk cleanup
-  f.OS/Info
-  g.CPU availability
-5.Working on custom execution environment creation.
+Corrected:
+Created a CI/CD pipeline for Lambda, but unfortunately, the Lambda function is continuously loading, causing the pipeline to fail.
+
+Corrected:
+Gathered information on the major requirements of SonarQube.
+
+Corrected:
+Understood and triggered the playbooks dynamically by making API calls.
+
+Corrected:
+Completed the following Ansible use cases:
+a. Deployed code to multiple servers with an automated notification trigger
+b. Restarted the servers on AWS using a scheduler
+c. Restarted services
+d. Installed software
+e. Cleaned up disk space
+f. Retrieved OS information
+g. Checked CPU availability.
+
+Corrected:
+Working on creating a custom execution environment.
+
+
+
+
+
+
+Regenerate response
